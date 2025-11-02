@@ -1,0 +1,12 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: promo-service
+
+logging:
+  level:
+    root: INFO
+    com.ecom: DEBUG
+

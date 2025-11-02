@@ -1,0 +1,12 @@
+server:
+  port: 8089
+
+spring:
+  application:
+    name: payment-service
+
+logging:
+  level:
+    root: INFO
+    com.ecom: DEBUG
+

@@ -1,0 +1,12 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: address-service
+
+logging:
+  level:
+    root: INFO
+    com.ecom: DEBUG
+

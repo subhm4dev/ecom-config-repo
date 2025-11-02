@@ -1,0 +1,12 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: catalog-service
+
+logging:
+  level:
+    root: INFO
+    com.ecom: DEBUG
+

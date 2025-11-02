@@ -1,0 +1,12 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: order-service
+
+logging:
+  level:
+    root: INFO
+    com.ecom: DEBUG
+
