@@ -17,16 +17,45 @@ spring:
       host: ${REDIS_HOST:localhost}
       port: ${REDIS_PORT:6379}
 
-# OpenTelemetry
+# Actuator & Monitoring Configuration
+# This configuration is shared across ALL microservices via Config Server
+# Any service-specific overrides go in their respective application.yml files
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,prometheus
+        # Standard endpoints exposed to all services
+        include: health,info,prometheus,metrics
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: when-authorized  # Show details only when authorized (secure by default)
+      probes:
+        enabled: true  # Enable Kubernetes liveness/readiness probes
+    prometheus:
+      enabled: true
   metrics:
     export:
       prometheus:
         enabled: true
+    tags:
+      application: ${spring.application.name}  # Tag all metrics with service name
+      environment: ${ENVIRONMENT:local}
+  health:
+    # Health indicators enabled by default:
+    # - db (when using JPA)
+    # - diskspace
+    # - ping
+    # Custom health checks can be added per service
+    diskspace:
+      enabled: true
+    db:
+      enabled: true
+  info:
+    env:
+      enabled: true  # Include environment info
+    java:
+      enabled: true  # Include Java version info
 
 logging:
   pattern:

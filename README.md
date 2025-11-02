@@ -40,7 +40,7 @@ Use `${VARIABLE_NAME:default-value}` syntax:
 ```yaml
 spring:
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/ecom_db
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/ecom_iam
 ```
 
 ## Secrets
