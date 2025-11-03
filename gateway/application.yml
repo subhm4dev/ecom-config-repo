@@ -93,9 +93,7 @@ spring:
 # Gateway JWT Configuration
 gateway:
   jwt:
-    identity-service-url: ${IDENTITY_SERVICE_URL:http://localhost:8081}
-    jwks-endpoint: /.well-known/jwks.json
-    jwks-cache-refresh-interval-ms: ${JWKS_CACHE_REFRESH_INTERVAL_MS:300000}  # 5 minutes in milliseconds
+    enabled: true  # Required for ReactiveJwtValidationAutoConfiguration
   public-paths:
     - /api/v1/auth/**
     - /.well-known/**
@@ -103,6 +101,13 @@ gateway:
     - /swagger-ui/**
     - /v3/api-docs/**
     - /swagger-ui.html
+
+# JWT Validation Configuration (for jwt-validation-starter shared library)
+# Maps to JwtValidationProperties with 'jwt' prefix
+jwt:
+  identity-service-url: ${IDENTITY_SERVICE_URL:http://localhost:8081}
+  jwks-endpoint: /.well-known/jwks.json
+  jwks-cache-refresh-interval-ms: ${JWKS_CACHE_REFRESH_INTERVAL_MS:300000}  # 5 minutes in milliseconds
 
 logging:
   level:
