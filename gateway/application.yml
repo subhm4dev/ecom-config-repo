@@ -8,9 +8,7 @@ spring:
     web-application-type: reactive
   cloud:
     gateway:
-      server:
-        webflux:
-          routes:
+      routes:
             - id: identity-service
               uri: http://localhost:8081
               predicates:
