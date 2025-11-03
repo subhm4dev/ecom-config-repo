@@ -83,7 +83,7 @@ gateway:
   jwt:
     identity-service-url: ${IDENTITY_SERVICE_URL:http://localhost:8081}
     jwks-endpoint: /.well-known/jwks.json
-    jwks-cache-refresh-interval: PT5M  # 5 minutes in ISO-8601 duration format
+    jwks-cache-refresh-interval-ms: ${JWKS_CACHE_REFRESH_INTERVAL_MS:300000}  # 5 minutes in milliseconds
   public-paths:
     - /api/auth/**
     - /.well-known/**
