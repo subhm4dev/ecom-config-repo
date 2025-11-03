@@ -20,7 +20,7 @@ spring:
             - id: identity-service-auth
               uri: http://localhost:8081
               predicates:
-                - Path=/api/auth/**
+                - Path=/api/v1/auth/**
               filters:
                 - StripPrefix=0
             - id: identity-service-well-known
@@ -32,55 +32,55 @@ spring:
             - id: user-profile-service
               uri: http://localhost:8082
               predicates:
-                - Path=/profile/**
+                - Path=/api/v1/profile/**
               filters:
                 - StripPrefix=0
             - id: address-service
               uri: http://localhost:8083
               predicates:
-                - Path=/address/**
+                - Path=/api/v1/address/**
               filters:
                 - StripPrefix=0
             - id: catalog-service
               uri: http://localhost:8084
               predicates:
-                - Path=/catalog/**
+                - Path=/api/v1/product/**
               filters:
                 - StripPrefix=0
             - id: inventory-service
               uri: http://localhost:8085
               predicates:
-                - Path=/inventory/**
+                - Path=/api/v1/inventory/**
               filters:
                 - StripPrefix=0
             - id: promo-service
               uri: http://localhost:8086
               predicates:
-                - Path=/promo/**,/promotion/**
+                - Path=/api/v1/promotion/**
               filters:
                 - StripPrefix=0
             - id: cart-service
               uri: http://localhost:8087
               predicates:
-                - Path=/cart/**
+                - Path=/api/v1/cart/**
               filters:
                 - StripPrefix=0
             - id: checkout-service
               uri: http://localhost:8088
               predicates:
-                - Path=/checkout/**
+                - Path=/api/v1/checkout/**
               filters:
                 - StripPrefix=0
             - id: payment-service
               uri: http://localhost:8089
               predicates:
-                - Path=/payment/**
+                - Path=/api/v1/payment/**
               filters:
                 - StripPrefix=0
             - id: order-service
               uri: http://localhost:8090
               predicates:
-                - Path=/order/**
+                - Path=/api/v1/order/**
               filters:
                 - StripPrefix=0
 
@@ -97,7 +97,7 @@ gateway:
     jwks-endpoint: /.well-known/jwks.json
     jwks-cache-refresh-interval-ms: ${JWKS_CACHE_REFRESH_INTERVAL_MS:300000}  # 5 minutes in milliseconds
   public-paths:
-    - /api/auth/**
+    - /api/v1/auth/**
     - /.well-known/**
     - /actuator/**
     - /swagger-ui/**
