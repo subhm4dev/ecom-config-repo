@@ -72,6 +72,26 @@ spring:
               filters:
                 - StripPrefix=0
 
+  # Redis for token blacklisting
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+# Gateway JWT Configuration
+gateway:
+  jwt:
+    identity-service-url: ${IDENTITY_SERVICE_URL:http://localhost:8081}
+    jwks-endpoint: /.well-known/jwks.json
+    jwks-cache-refresh-interval: PT5M  # 5 minutes in ISO-8601 duration format
+  public-paths:
+    - /api/auth/**
+    - /.well-known/**
+    - /actuator/**
+    - /swagger-ui/**
+    - /v3/api-docs/**
+    - /swagger-ui.html
+
 logging:
   level:
     root: INFO

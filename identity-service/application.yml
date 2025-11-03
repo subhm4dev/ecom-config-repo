@@ -25,8 +25,10 @@ spring:
 
 jwt:
   issuer: ecom-identity
-  access-token-validity: 900  # 15 minutes
-  refresh-token-validity: 86400  # 24 hours
+  access-token:
+    expiry-hours: 2  # 2 hours - short for security, auto-refreshed seamlessly via refresh token
+  refresh-token:
+    expiry-days: 30  # 30 days - full session lifetime (like Amazon, Blinkit, etc.)
 
 logging:
   level:
