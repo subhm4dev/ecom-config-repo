@@ -5,6 +5,9 @@ spring:
   application:
     name: user-profile-service
 
+jwt:
+  enabled: true
+
 logging:
   level:
     root: INFO
