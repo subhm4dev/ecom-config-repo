@@ -5,6 +5,9 @@ spring:
   application:
     name: inventory-service
 
+jwt:
+  enabled: true
+
 logging:
   level:
     root: INFO
