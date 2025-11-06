@@ -1,0 +1,12 @@
+server:
+  port: 8091
+
+spring:
+  application:
+    name: fulfillment-service
+
+logging:
+  level:
+    root: INFO
+    com.ecom: DEBUG
+
