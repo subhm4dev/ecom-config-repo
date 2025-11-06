@@ -83,6 +83,36 @@ spring:
                 - Path=/api/v1/order/**
               filters:
                 - StripPrefix=0
+            - id: fulfillment-service
+              uri: http://localhost:8091
+              predicates:
+                - Path=/api/v1/fulfillment/**
+              filters:
+                - StripPrefix=0
+            - id: delivery-service
+              uri: http://localhost:8091
+              predicates:
+                - Path=/api/v1/delivery/**
+              filters:
+                - StripPrefix=0
+            - id: driver-service
+              uri: http://localhost:8091
+              predicates:
+                - Path=/api/v1/driver/**
+              filters:
+                - StripPrefix=0
+            - id: search-service
+              uri: http://localhost:8092
+              predicates:
+                - Path=/api/v1/search/**
+              filters:
+                - StripPrefix=0
+            - id: recommendations-service
+              uri: http://localhost:8092
+              predicates:
+                - Path=/api/v1/recommendations/**
+              filters:
+                - StripPrefix=0
 
   # Redis for token blacklisting
   data:
@@ -101,6 +131,11 @@ gateway:
     - /swagger-ui/**
     - /v3/api-docs/**
     - /swagger-ui.html
+    - /api/v1/search
+    - /api/v1/search/autocomplete
+    - /api/v1/search/category/**
+    - /api/v1/search/subcategory/**
+    - /api/v1/recommendations/trending
 
 # JWT Validation Configuration (for jwt-validation-starter shared library)
 # Maps to JwtValidationProperties with 'jwt' prefix
