@@ -4,6 +4,62 @@ server:
 spring:
   application:
     name: checkout-service
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+jwt:
+  enabled: true
+  identity-service-url: ${IDENTITY_SERVICE_URL:http://localhost:8081}
+  jwks-endpoint: /.well-known/jwks.json
+  jwks-cache-refresh-interval-ms: ${JWKS_CACHE_REFRESH_INTERVAL_MS:300000}
+
+http-client:
+  default-timeout: PT5S
+  connect-timeout: PT2S
+  read-timeout: PT5S
+  write-timeout: PT5S
+  response-timeout: PT10S
+  circuit-breaker:
+    enabled: true
+    failure-rate-threshold: 50.0
+    wait-duration-in-open-state: PT60S
+    ring-buffer-size-in-closed-state: 100
+    ring-buffer-size-in-half-open-state: 10
+  retry:
+    enabled: true
+    max-attempts: 3
+    wait-duration: PT1S
+  rate-limiter:
+    enabled: true
+    limit-for-period: 100
+    limit-refresh-period: PT1M
+    timeout-duration: PT5S
+  services:
+    identity-service:
+      timeout: PT10S
+      circuit-breaker:
+        failure-rate-threshold: 30.0
+    cart-service:
+      timeout: PT5S
+    catalog-service:
+      timeout: PT5S
+    inventory-service:
+      timeout: PT5S
+    promo-service:
+      timeout: PT5S
+    payment-service:
+      timeout: PT10S
+    order-service:
+      timeout: PT5S
+    address-service:
+      timeout: PT5S
 
 logging:
   level:
