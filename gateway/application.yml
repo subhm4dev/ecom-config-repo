@@ -169,6 +169,10 @@ gateway:
     - /v3/api-docs/**             # Public: OpenAPI specification
     - /swagger-ui.html            # Public: Swagger UI redirect
     
+    # Public catalog endpoints (browsing without authentication)
+    - /api/v1/product/**
+    - /api/v1/category/**
+    
     # Public search endpoints
     - /api/v1/search
     - /api/v1/search/autocomplete
