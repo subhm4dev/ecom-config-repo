@@ -47,6 +47,12 @@ spring:
                 - Path=/api/v1/product/**
               filters:
                 - StripPrefix=0
+            - id: catalog-service-category
+              uri: http://localhost:8084
+              predicates:
+                - Path=/api/v1/category/**
+              filters:
+                - StripPrefix=0
             - id: inventory-service
               uri: http://localhost:8085
               predicates:
@@ -101,6 +107,24 @@ spring:
                 - Path=/api/v1/driver/**
               filters:
                 - StripPrefix=0
+            - id: delivery-providers-service
+              uri: http://localhost:8091
+              predicates:
+                - Path=/api/v1/delivery-providers/**
+              filters:
+                - StripPrefix=0
+            - id: public-tracking-service
+              uri: http://localhost:8091
+              predicates:
+                - Path=/api/v1/public/tracking/**
+              filters:
+                - StripPrefix=0
+            - id: public-delivery-service
+              uri: http://localhost:8091
+              predicates:
+                - Path=/api/v1/public/delivery/**
+              filters:
+                - StripPrefix=0
             - id: search-service
               uri: http://localhost:8092
               predicates:
@@ -111,6 +135,12 @@ spring:
               uri: http://localhost:8092
               predicates:
                 - Path=/api/v1/recommendations/**
+              filters:
+                - StripPrefix=0
+            - id: search-history-service
+              uri: http://localhost:8092
+              predicates:
+                - Path=/api/v1/search/history/**
               filters:
                 - StripPrefix=0
 
@@ -145,6 +175,10 @@ gateway:
     - /api/v1/search/category/**
     - /api/v1/search/subcategory/**
     - /api/v1/recommendations/trending
+    
+    # Public tracking endpoints (no authentication required)
+    - /api/v1/public/tracking/**
+    - /api/v1/public/delivery/**
 
 # JWT Validation Configuration (for jwt-validation-starter shared library)
 # Maps to JwtValidationProperties with 'jwt' prefix
