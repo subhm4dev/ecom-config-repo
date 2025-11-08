@@ -170,8 +170,16 @@ gateway:
     - /swagger-ui.html            # Public: Swagger UI redirect
     
     # Public catalog endpoints (browsing without authentication)
-    - /api/v1/product/**
-    - /api/v1/category/**
+    # Only 3 endpoints are public (GET only):
+    # 1. GET /api/v1/category - Get all categories
+    # 2. GET /api/v1/product/search - Search/get all products
+    # 3. GET /api/v1/product/{id} - Get product by ID
+    # Note: Gateway doesn't support HTTP method matching in public-paths,
+    # so we rely on the catalog service to enforce method restrictions.
+    # The catalog service will reject non-GET requests to these paths.
+    - /api/v1/product/search
+    - /api/v1/product/*  # Matches /api/v1/product/{id} (UUID). Note: Also matches /api/v1/product/search, but that's OK since catalog service enforces GET-only
+    - /api/v1/category
     
     # Public search endpoints
     - /api/v1/search
