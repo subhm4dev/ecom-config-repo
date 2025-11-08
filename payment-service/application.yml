@@ -5,6 +5,12 @@ spring:
   application:
     name: payment-service
 
+# Razorpay Configuration
+razorpay:
+  key-id: ${RAZORPAY_KEY_ID:rzp_test_RdH1PD2IVUJ9xp}
+  key-secret: ${RAZORPAY_KEY_SECRET:0zYbnEqikpsp89WVocKKN36p}
+  webhook-secret: ${RAZORPAY_WEBHOOK_SECRET:webhook_secret_placeholder}
+
 logging:
   level:
     root: INFO
