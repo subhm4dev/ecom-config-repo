@@ -125,12 +125,21 @@ gateway:
   jwt:
     enabled: true  # Required for ReactiveJwtValidationAutoConfiguration
   public-paths:
-    - /api/v1/auth/**
-    - /.well-known/**
-    - /actuator/**
-    - /swagger-ui/**
-    - /v3/api-docs/**
-    - /swagger-ui.html
+    # Public auth endpoints (accessible without authentication)
+    - /api/v1/auth/register      # Public: New users can register
+    - /api/v1/auth/login          # Public: Users can login (get tokens)
+    - /api/v1/auth/refresh        # Public: Users can refresh expired tokens
+    # NOTE: /api/v1/auth/logout and /api/v1/auth/logout-all are NOT public
+    # They require authentication - Gateway will validate token before allowing access
+    
+    # Other public endpoints
+    - /.well-known/**             # Public: JWKS endpoint (for token validation)
+    - /actuator/**                # Public: Health checks and monitoring
+    - /swagger-ui/**              # Public: API documentation UI
+    - /v3/api-docs/**             # Public: OpenAPI specification
+    - /swagger-ui.html            # Public: Swagger UI redirect
+    
+    # Public search endpoints
     - /api/v1/search
     - /api/v1/search/autocomplete
     - /api/v1/search/category/**
